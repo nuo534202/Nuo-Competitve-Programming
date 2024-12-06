@@ -43,9 +43,9 @@ void modify(int q, int k, int p = 1, int l = 1, int r = n) {
 }
  
 tree query(int ql, int qr, int p = 1, int l = 1, int r = n) {
-    if (ql <= l && r <= qr) return t[p]; // 如果[l,r]是[ql,qr]子区间，直接返回t[p]
+    if (ql <= l && r <= qr) return t[p]; // 如果 [l, r] 是 [ql, qr] 子区间，直接返回 t[p]
     if (qr <= mid) return query(ql, qr, ls, l, mid);
-    // 如果[ql,qr]位于[l,r]左半区间，那么直接访问[l,r]左半区间
+    // 如果 [ql, qr] 位于 [l, r] 左半区间，那么直接访问 [l, r] 左半区间
     else {
         if (ql > mid) return query(ql, qr, rs, mid + 1, r);
         // 如果[ql,qr]位于[l,r]右半区间，那么直接访问[l,r]右半区间
