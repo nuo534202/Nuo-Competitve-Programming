@@ -1,5 +1,7 @@
 # My solution
 
+Contest Link: https://atcoder.jp/contests/abc381
+
 ## C - 11/22 Substring
 遍历字符串，当当前字符为 '/' 的时候，分别向左边找连续 1，向右边找连续 2 的个数，当前合法的 11/22 串长度为两者最小值的两倍加 1。
 
