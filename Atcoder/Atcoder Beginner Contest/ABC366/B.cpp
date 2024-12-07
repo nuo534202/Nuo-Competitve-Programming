@@ -21,7 +21,7 @@ int main() {
 				num = 0;
 				putchar(s[j][i]);
 			}
-			else num++; // 避免*出现在字符串末尾
+			else num++; // 避免 * 出现在字符串末尾
 		}
 		putchar('\n');
 	}
