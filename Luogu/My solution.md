@@ -1,5 +1,15 @@
 # My solution
 
+Link of Luogu: https://www.luogu.com.cn/
+
+The solutions are sorted by the first letter in ascending order.
+
+## P3372 【模板】线段树 1
+模板题。区间修改，区间查询。
+
+## P3373 【模板】线段树 2
+模板题。区间修改，区间查询。先乘后加。在运算中要及时对m取余避免overflow。
+
 ## P4513 小白逛公园
 本题难点在于理解如何利用线段树在一段存在负数的区间找到最大的连续区间的和（连续区间的和即为一段连续区间内每一位的数的和，一下简称连续和）。
 对于每一段的区间，我们可以用线段树存下区间和 $sum$，从左端点出发的最大连续和 $lm$，从右端点出发的最大连续和 $rm$，整个区间最大连续和 $am$。
