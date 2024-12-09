@@ -24,7 +24,7 @@ void pushUp(int p) { t[p].num = t[ls].num + t[rs].num; }
 void pushDown(int p, int l, int r) {
 	if (t[p].tag) {
 		t[ls].num = mid - l + 1 - t[ls].num, t[rs].num = r - mid - t[rs].num;
-        // 区间长度减去关着的灯的数量即为开着的灯的数量
+        	// 区间长度减去关着的灯的数量即为开着的灯的数量
 		t[ls].tag ^= 1, t[rs].tag ^= 1, t[p].tag ^= 1;
 	}
 }
@@ -43,7 +43,7 @@ void modify(int ql, int qr, int p = 1, int l = 1, int r = n) {
 int query(int ql, int qr, int p = 1, int l = 1, int r = n) {
 	if (ql <= l && r <= qr) return t[p].num;
 	pushDown(p, l, r);
-    int ans = 0;
+    	int ans = 0;
 	if (ql <= mid) ans += query(ql, qr, ls, l, mid);
 	if (qr > mid) ans += query(ql, qr, rs, mid + 1, r);
 	return ans;
