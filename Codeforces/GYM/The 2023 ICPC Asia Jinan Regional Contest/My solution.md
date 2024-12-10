@@ -55,4 +55,4 @@ $$
 \sum_{i = l, a_i \le x}^r(x - a_i) - \sum_{j = l, a_j \le x}^r(a_j - x)= \sum_{i = l, a_i \le x}^ra_i - \sum_{j = l, a_j \le x}^ra_j
 $$
 
-可以用两个 multiset 分别记录小于等于中位数的值和大于中位数的值，并同时记录两个两个 multiset 中的值的和。
+可以用两个 multiset 分别记录小于等于中位数的值和大于中位数的值，并同时记录两个 $multiset$ 中的值的和。
