@@ -36,6 +36,9 @@ The solutions are sorted by the first letter in ascending order.
 只需要将 $t[p].num$ 改成 $r - l + 1 - t[p].num$ 即可
 （原本开着的 $t[p].num$ 盏灯在操作后被关上了，用所有区间内所有灯的数量减去关着的灯的数量就是开着的灯的数量）。
 
+## P3884 [JLOI2009] 二叉树问题
+对于每两个相连的节点，从根节点向叶子节点的边边权为 $1$, 从叶子节点向根节点的边边权为 $2$，利用 $dfs$ 求出所有信息。
+
 ## P4391 [BOI2009] Radio Transmission 无线传输
 本题需要利用到 $KMP$ 的性质。
 
