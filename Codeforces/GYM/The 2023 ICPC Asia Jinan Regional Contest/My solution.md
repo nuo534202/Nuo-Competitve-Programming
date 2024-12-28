@@ -1,8 +1,8 @@
 # My solution
 
-Contest Link: https://codeforces.com/gym/104901
+VP Link: [The 2023 ICPC Asia Jinan Regional Contest](https://codeforces.com/gym/104901)
 
-My Blog Link: https://blog.csdn.net/djhws144/article/details/144067875?spm=1001.2014.3001.5501
+My Blog Link: [2023 ICPC Jinan Regional](https://blog.csdn.net/djhws144/article/details/144067875?spm=1001.2014.3001.5501)
 
 ## A. Many Many Heads
 括号匹配问题，但不考虑括号的方向。如果括号匹配方式唯一，那么只能是圆括号（ '(' 或 ')' ）和 方括号（ '[' 或 ']' ）交替排列，或者是两组交替排列的括号并且最外层的括号类型不同，例如 "\[()\](\[()\])"。
