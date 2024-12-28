@@ -1,5 +1,7 @@
 # My solution
-Contest Link: https://atcoder.jp/contests/abc385
+Contest Link: [Atcoder Beginner Contest 385](https://atcoder.jp/contests/abc385)
+
+My Blog Link: [ABC385](https://blog.csdn.net/djhws144/article/details/144797168?spm=1001.2014.3001.5501)
 
 ## A - Equally
 只有三个数相等或者两个小的数加起来等于最大的数时输出 $Yes$，其他时候输出 $No$。
