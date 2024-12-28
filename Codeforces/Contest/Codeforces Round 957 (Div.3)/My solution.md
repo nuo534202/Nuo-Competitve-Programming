@@ -1,4 +1,7 @@
 # My solution
+Contest Link: [Codeforces Round 957](https://codeforces.com/contest/1992)
+
+My Blog Link: [CF957](https://blog.csdn.net/djhws144/article/details/140376880?spm=1001.2014.3001.5501)
 
 ## A. Only Pluses
 每次都选取最小的数进行操作，最后就会得到最大的结果。
