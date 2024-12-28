@@ -1,8 +1,8 @@
 # My solution
 
-Contest Link: https://atcoder.jp/contests/abc366
+Contest Link: [Atcoder Beginner Contest](https://atcoder.jp/contests/abc366)
 
-My Contest Link: https://blog.csdn.net/djhws144/article/details/141097998?spm=1001.2014.3001.5501
+My Contest Link: [ABC366](https://blog.csdn.net/djhws144/article/details/141097998?spm=1001.2014.3001.5501)
 
 ## A - Election 2
 只有 $T$ 或者 $A$ 大于等于 $N$ 的一半的时候输出 $Yes$，否则输出 $No$。
