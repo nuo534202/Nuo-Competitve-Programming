@@ -1,6 +1,8 @@
 # My solution
 Contest Link: [Codeforces Round 995](https://codeforces.com/contest/2051)
 
+My Blog Link: [CF995](https://blog.csdn.net/djhws144/article/details/144932791?sharetype=blogdetail&sharerId=144932791&sharerefer=PC&sharesource=djhws144&spm=1011.2480.3001.8118)
+
 ## A. Preparing for the Olympiad
 当 $a_i > b_{i + 1}$ 时，将 $a_i - b_{i + 1}$ 加入答案。最后将 $a_n$ 加入答案。
 
@@ -28,7 +30,7 @@ a[r] \ge sum - a[l] - y
 \end{matrix}
 $$
 
-时间复杂度： $O(n\log n)$
+时间复杂度： $O(tn\log n)$
 
 ## E. Best Price
 在购买人数相同（比单价小的 $b$ 数量一定）并且满足不超过 $k$ 个差评的前提下，我们要让单价尽可能的大，因此单价一定为 $a$, $b$ 数组中的某一个值。
@@ -42,3 +44,5 @@ $$
 因此可以分别对 $a$, $b$ 数组进行排序。
 
 每次都可以利用二分分别在 $a$, $b$ 数组中差评个数和购买人数，然后直接计算出总利润。
+
+时间复杂度： $O(tn\log n)$
