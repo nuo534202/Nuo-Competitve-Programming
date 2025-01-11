@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	string s; cin >> s;
 	int n = s.size(), ans = 0;
 	s = " " + s;
@@ -16,5 +16,5 @@ int main() {
 		}
 	}
 	cout << ans << endl;
-    return 0;
+	return 0;
 }
