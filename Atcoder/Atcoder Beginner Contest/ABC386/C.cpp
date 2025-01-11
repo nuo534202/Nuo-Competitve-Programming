@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	int k; string s, t;
 	cin >> k >> s >> t;
 	if (abs((int)(s.size() - t.size())) > 1) {
@@ -22,5 +22,5 @@ int main() {
 	}
 	if (l == r) puts("Yes");
 	else puts("No");
-    return 0;
+	return 0;
 }
