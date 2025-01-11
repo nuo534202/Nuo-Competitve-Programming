@@ -6,7 +6,7 @@ int n, m;
 struct node { int x, y; char c; } p[M];
 
 int main() {
-    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	cin >> n >> m;
 	for (int i = 1; i <= m; i++) cin >> p[i].x >> p[i].y >> p[i].c;
 	sort(p + 1, p + m + 1, [](const node &a, const node &b){
@@ -24,5 +24,5 @@ int main() {
 		}
 	}
 	cout << "Yes" << endl;
-    return 0;
+	return 0;
 }
