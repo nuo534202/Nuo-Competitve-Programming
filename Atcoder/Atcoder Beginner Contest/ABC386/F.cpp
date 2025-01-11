@@ -14,11 +14,6 @@ int main() {
 	ios::sync_with_stdio(false); cin.tie(0);
 	cin >> k >> s >> t;
 	memset(dp, 0x3f, sizeof(dp));
-	/*
-	s[i] == t[j], dp[i][j] = dp[i - 1][j - 1]
-	dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
-	|i - j| <= k, j = j - i + k + 1, dp[i][j]
-	*/
 	for (int j = 1; j <= k; j++) dp[0][j + 30] = j;
 	for (int i = 1; i <= k; i++) dp[i][30 - i] = i;
 	dp[0][30] = 0;
