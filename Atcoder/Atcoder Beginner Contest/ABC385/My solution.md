@@ -35,6 +35,8 @@ My Blog Link: [ABC385](https://blog.csdn.net/djhws144/article/details/144797168?
 按照贪心的思想，我们可以枚举中心点，将中心点相邻的点按照度数从大到小进行排序 ($x$ 相同的情况下 $min(deg_{1 \le i \le x})$ 越大，结果越优，所以要取最大的 $x$ 个节点)。
 枚举 $x$，计算出对应的节点数量，就可以找到最大的节点数了。
 
+时间复杂度： $O(N\log K)$， $K$ 表示节点的最大度数。
+
 ## F - Visible Buildings
 取相邻的两个建筑物，将这两个建筑物的顶点连一条直线，所有之前的截距的最大值就是答案。
 
@@ -45,3 +47,5 @@ My Blog Link: [ABC385](https://blog.csdn.net/djhws144/article/details/144797168?
 直线方程为： $y - h_{i - 1} = \frac{h_i - h_{i - 1}}{x_i - x_{i - 1}}(x - x_{i - 1})$，即 $y = \frac{h_i - h_{i - 1}}{x_i - x_{i - 1}} x + h_{i - 1} - \frac{h_i - h_{i - 1}}{x_i - x_{i - 1}} x_{i - 1}$
 
 截距为： $h_{i - 1} - \frac{h_i - h_{i - 1}}{x_i - x_{i - 1}} x_{i - 1}$
+
+时间复杂度： $O(N)$。
