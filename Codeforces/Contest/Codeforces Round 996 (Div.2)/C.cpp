@@ -31,8 +31,8 @@ signed main() {
 			for (int j = 1; j <= m; j++) {
 				if (vis[i][j]) {
 					if (i == n && j == m) a[i][j] = tar - row[i];
-					else if (s[vis[i][j]] == 'D') a[i][j] = tar - row[i];
-					else a[i][j] = tar - col[j];
+					else if (s[vis[i][j]] == 'D') a[i][j] = tar - row[i]; // 优先满足行
+					else a[i][j] = tar - col[j]; // 优先满足列
 					row[i] += a[i][j], col[j] += a[i][j];
 				}
 			}
