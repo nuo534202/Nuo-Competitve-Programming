@@ -25,6 +25,8 @@ My Blog Link: [CF996](https://blog.csdn.net/djhws144/article/details/145137970?s
 - 当 $n \not= m$ 即 $n - m \not= 0$时， $x$ 一定为 $0$。 
 - 当 $n = m$ 即 $n - m = 0$ 时， $x$ 可以为任意实数。
 
+实现细节：当前位置对应的移动方向为 D DD 时，优先满足行，否则优先满足列。
+
 时间复杂度： $O(\sum_{i = 1}^{t}mn)$。
 
 # D. Scarecrow
