@@ -10,7 +10,7 @@ int main() {
 	while (t--) {
 		cin >> n >> k >> l;
 		for (int i = 1; i <= n; i++) cin >> a[i];
-		double ans = a[1], pos = k;
+		double ans = a[1], pos = k;  // 计算中的过程可能会出现小数
 		for (int i = 2; i <= n; i++) {
 			if (a[i] - ans > pos) {
 				double lpos = pos, lans = ans;
@@ -22,7 +22,7 @@ int main() {
 			if (pos >= l) break;
 		}
 		if (pos < l) ans += l - pos;
-		cout << (int)round(2 * ans) << '\n';
+		cout << (int)round(2 * ans) << '\n'; // 四舍五入
 	}
 	return 0;
 }
