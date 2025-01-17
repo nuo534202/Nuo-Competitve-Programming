@@ -4,7 +4,7 @@ Contest Link: [Codeforces Round 996](https://codeforces.com/contest/2055)
 
 My Blog Link: [CF996](https://blog.csdn.net/djhws144/article/details/145137970?sharetype=blogdetail&sharerId=145137970&sharerefer=PC&sharesource=djhws144&spm=1011.2480.3001.8118)
 
-# A. Two Frogs
+## A. Two Frogs
 答案只与 $Alice$ 和 $Bob$ 之间距离的奇偶有关。
 
 - 当 $Alice$ 和 $Bob$ 之间的距离为奇数的时候， $Alice$ 只要一直朝着 $Bob$ 的方向走，最后 $Alice$ 一定获胜。
@@ -12,14 +12,14 @@ My Blog Link: [CF996](https://blog.csdn.net/djhws144/article/details/145137970?s
 
 时间复杂度： $O(t)$。
 
-# B. Crafting
+## B. Crafting
 - 当存在两个 $1 \le i \le n$，使得 $a_i < b_i$，那么不可能成功制作工艺品，因为当其中一个 $a_i$ 增大的时候，另一个 $a_j$ 会相应减小且他们的总和不变，即 $a_i + a_j$ 为定值，又 $a_i + a_j < b_i + b_j$，所以不可能成功。
 - 如果初始状态下的 $1 \le i \le n$ 都满足 $a_i \ge b_i$，那么一定成功。
 - 如果存在唯 一 一 个 $i$，使得 $a_i < b_i$，只需要检查对于所有的 $1 \le j \le n$, $j \not= i$，是否满足 $a_j - b_j \ge b_i - a_i$ 即可。
 
 时间复杂度： $O(\sum_{i = 1}^{t}n)$。
 
-# C. The Trail
+## C. The Trail
 假设最初的矩形网络每一行每一列的和都为 $x$，那么 $nx = mx$，即 $(n - m)x = 0$
 
 - 当 $n \not= m$ 即 $n - m \not= 0$时， $x$ 一定为 $0$。 
@@ -29,7 +29,7 @@ My Blog Link: [CF996](https://blog.csdn.net/djhws144/article/details/145137970?s
 
 时间复杂度： $O(\sum_{i = 1}^{t}mn)$。
 
-# D. Scarecrow
+## D. Scarecrow
 1. 可以观察到第一步是让位于 $a_1$ 的稻草人移动到位置 $0$，然后青蛙跳到位置 $k$。
 2. 并且为了让时间最优，稻草人的位置一定不能交叉。
 3. 能利用下一个稻草人往前跳一定要跳：如果不能跳，那么就要让上一个位置的稻草人往右移，下一个稻草人往左移，直到青蛙能跳到下一个稻草人所在的位置为止，这个过程相当于上一个稻草人在 “推” 着青蛙往前走，对于这个 “推” 的操作，往前推的距离是等于时间的，而且每个稻草人都一样，所以能跳一定要往前跳。
