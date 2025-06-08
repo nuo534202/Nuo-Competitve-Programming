@@ -1,4 +1,4 @@
-# Educational Codeforces Round (Rated for Div.2)
+# Educational Codeforces Round 175 (Rated for Div.2)
 
 比赛链接：[Edu175](https://codeforces.com/contest/2070)
 
