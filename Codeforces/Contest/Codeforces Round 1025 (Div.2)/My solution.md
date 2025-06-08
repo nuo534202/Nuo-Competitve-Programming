@@ -14,6 +14,31 @@
 
 # C1. Hacking Numbers (Easy Version)
 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int solve(int i) {
+    int res = 0;
+    while (i) res += (i % 10), i /= 10;
+    return res;
+}
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+	int res = 0;
+    for (int i = 1; i <= 1000000000; i++) {
+        int tmp = solve(i);
+        tmp = solve(tmp);
+        res = max(res, tmp);
+    }
+    cout << res << endl;
+    return 0;
+}
+
+
+```
+
 通过上面这个程序可以发现，$[1, 10^9]$ 范围内的所有数通过两次 `digit` 操作都会收敛到 $[1, 16]$ 的范围内。
 
 1. 执行操作 `add -8`，那么当前 $x$ 就会在 $[1, 8]$ 的范围内。
