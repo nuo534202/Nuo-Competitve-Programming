@@ -177,3 +177,144 @@ signed main() {
 	return 0;
 }
 ```
+
+## 3. Codeforces Round 1031 A. Shashliks
+
+**题目链接**：[Codeforces Round 1031 A](https://codeforces.com/contest/2113/problem/A)
+
+**题意**：给定一个初始温度 $k$，当温度大于等于 $a$ 时，可以进行第一种操作使温度下降 $x$ 度；当温度大于等于 $b$ 时，可以进行第二种操作使温度下降 $y$ 度。求最多操作次数。
+
+**正确思路及代码**
+
+贪心。
+
+不妨假设 $a > b$ ($a \le b$ 时分别交换 $(a, b)$ 和  $(x, y)$ 即可)
+
+- 当 $x > y$ 时，一直进行第二种操作是最优的操作。
+- 当 $x < y$ 时，先进行第一种操作直到温度 $k < a$ 再进行第二种操作是最优的操作。
+
+时间复杂度： $O(1)$。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+void solve() {
+    int k, a, b, x, y;
+    cin >> k >> a >> b >> x >> y;
+    if (a < b) swap(a, b), swap(x, y);
+    int res = 0;
+    if (x < y) {
+        int res1 = max(0LL, (k - a + x) / x), res2 = max(0LL, (k - res1 * x - b + y) / y);
+        res = max(res1 + res2, res);
+    } else {
+        res = max(res, (k - b + y) / y);
+    }
+    cout << res << "\n";
+}
+
+signed main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) solve();
+    return 0;
+}
+```
+
+## 4. Codeforces Round 1031 B. Good Start
+
+**题目链接**：[Codeforces Round 1031 B](https://codeforces.com/contest/2113/problem/B)
+
+**题意**：平面内给定一个从 $(0, 0)$ 到 $(w, h)$ 的矩形，需要用大小为 $a \times b$ 纸张去覆盖整个矩形，纸张可以超出矩形边界，但是不能旋转、不能重叠。现在矩形内已经放有两张纸，问是否能在不移动这两张纸的前提下，按照要求用纸张覆盖整个矩形。
+
+**正确思路及代码**
+
+当 $(x_1 - x_2) \% a = 0$ 或 $(y_1 - y_2) \% b = 0$ 时输出 `Yes`。
+
+**特判**：当 $x_1 = x_2$ 或 $y_1 = y_2$ 时需要判断另一个不相等的坐标的差是否能整除 $a$ 或者 $b$。
+
+时间复杂度： $O(1)$。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+int w, h, a, b, x1, Y1, x2, y2;
+
+void solve() {
+    cin >> w >> h >> a >> b >> x1 >> Y1 >> x2 >> y2;
+    if (x1 == x2) {
+        if (abs(Y1 - y2) % b == 0) cout << "Yes\n";
+        else cout << "No\n";
+    } else if (Y1 == y2) {
+        if (abs(x1 - x2) % a == 0) cout << "Yes\n";
+        else cout << "No\n";
+    } else {
+        if ((x1 - x2) % a == 0 || (Y1 - y2) % b == 0) cout << "Yes\n";
+        else cout << "No\n";
+    }
+}
+
+signed main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) solve();
+    return 0;
+}
+```
+
+## 5. Codeforces Round 1031 C. Smilo and Minecraft
+
+**题目链接**：[Codeforces Round 1031 C](https://codeforces.com/contest/2113/problem/C)
+
+**题意**：给出大小为 $n \times m$ ($n, m \le 500$)的矿区，每一个格子可以是金矿 ($g$)、石头 (#) 或者是空地 ($.$)。收集金矿的方法为在一个空地安放炸药，以炸药为中心边长为 $2k + 1$ ($k \le 500$) 的正方形内，最边缘的金矿可以被收集，其余位置全部变为空地。问最多能收集多少金矿。
+
+**正确思路及代码**
+
+可以发现无论 $k$ 等于多少，第二次操作开始一定不会损失金矿，所以第一次操作只需要选择损失金矿最少的空地进行操作即可。为了快速查询区间内的金矿数量，可以利用二维前缀和对金矿数量进行维护。
+
+时间复杂度： $O(nm)$。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+int n, m, k, pre[505][505];
+
+void solve() {
+	cin >> n >> m >> k;
+	string s[505];
+	for (int i = 1; i <= n; i++) cin >> s[i], s[i] = " " + s[i];
+	for (int i = 0; i <= n; i++)
+		for (int j = 0; j <= m; j++) pre[i][j] = 0;
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= m; j++)
+			pre[i][j] = pre[i - 1][j] + pre[i][j - 1] - pre[i - 1][j - 1] + (s[i][j] == 'g');
+	int res = INT_MAX;
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= m; j++)
+			if (s[i][j] == '.') {
+				int maxx = min(n, i + k - 1), maxy = min(m, j + k - 1);
+				int minx = max(1LL, i - k + 1), miny = max(1LL, j - k + 1);
+				int tmp = pre[maxx][maxy] - pre[minx - 1][maxy] - pre[maxx][miny - 1] + pre[minx - 1][miny - 1];
+				res = min(res, tmp);
+			}
+	cout << pre[n][m] - res << "\n";
+}
+
+signed main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) solve();
+    return 0;
+}
+```
