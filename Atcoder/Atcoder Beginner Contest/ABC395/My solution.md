@@ -1,6 +1,8 @@
 # My solution
 
-比赛链接：[Atcoder Beginner Contest 395](https://www.cnblogs.com/nuo534202/articles/18947577)
+比赛链接：[Atcoder Beginner Contest 395](https://atcoder.jp/contests/abc395)
+
+博客链接：[ABC395](https://www.cnblogs.com/nuo534202/articles/18947577)
 
 ## A - Strictly Increasing?
 按照题意模拟
