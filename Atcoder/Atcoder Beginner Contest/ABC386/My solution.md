@@ -2,7 +2,7 @@
 
 Contest Link: [Atcoder Beginner Contest](https://atcoder.jp/contests/abc386)
 
-My Blog Link: [ABC386](https://blog.csdn.net/djhws144/article/details/145075561?sharetype=blogdetail&sharerId=145075561&sharerefer=PC&sharesource=djhws144&spm=1011.2480.3001.8118)
+My Blog Link: [ABC386](https://www.cnblogs.com/nuo534202/articles/18947464)
 
 ## A - Full House 2
 如果四张卡片有三张相同的或者两两相同，并且四张不完全相同，输出 $Yes$，否则输出 $No$。
