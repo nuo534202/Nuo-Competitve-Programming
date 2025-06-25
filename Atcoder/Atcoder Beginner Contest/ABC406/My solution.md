@@ -1,4 +1,6 @@
-比赛链接：[ABC406](https://atcoder.jp/contests/abc406)
+比赛链接：[Atcoder Beginner Contest 406](https://atcoder.jp/contests/abc406)
+
+Github 链接：[ABC406](https://www.cnblogs.com/nuo534202/articles/18947606)
 
 # A - Not Acceptable
 
