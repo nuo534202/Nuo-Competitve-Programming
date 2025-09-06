@@ -1,4 +1,4 @@
-<h1 style="text-align:center;">计算机几何</h1>
+<h1 style="text-align:center;">计算几何</h1>
 
 # 平面最近点对
 
