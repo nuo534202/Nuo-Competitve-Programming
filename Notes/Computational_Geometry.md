@@ -1,4 +1,12 @@
-<h1 style="text-align:center;">计算几何</h1>
+# Computational Geometry
+
+All the solutions of the practice problems in this markdown file is in [Computational Geometry Solutions](./solution/Computational_Geometry.md).
+
+## Convex Hull
+
+### Practice Problems
+
+- [Luogu P3194](https://www.luogu.com.cn/problem/P3194) - Blue
 
 # 平面最近点对
 
