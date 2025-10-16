@@ -15,11 +15,14 @@ The `solution` folder include some code templates and problem solutions for corr
 ## Data Structure
 
 - [Data Structure](Data_Structure.md)
+- [Data Structure Solutions](./solution/Data_Structure.md)
+  
 
 ## Graph Theory
 
 ## Computational Geometry
 
 - [Computational Geometry](Computational_Geometry.md)
+- [Computational Geometry Solutions](./solution/Computational_Geometry.md)
 
 ## Others
