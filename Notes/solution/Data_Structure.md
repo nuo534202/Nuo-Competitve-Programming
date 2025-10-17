@@ -167,3 +167,141 @@ int main() {
     return 0;
 }
 ```
+
+## Queue & Monotonic Queue
+
+### Luogu P2564 - Green
+
+**题目链接**：[Luogu P2564](https://www.luogu.com.cn/problem/P2564)
+
+**题目描述**：在包含 $N$ 个 $K$ 种彩珠的 $x$ 轴上，找一段能覆盖所有 $K$ 种彩珠的最短区间，求该区间的长度。
+
+**题解**
+
+个人认为只有黄题的难度
+
+将 $(pos, tag)$ 组成一个 $pair$，其中 $pos$ 代表彩珠位置，$tag$ 代表彩珠种类，对这个 $pair$ 进行排序。用 $queue$ 找出最短区间长度，具体实现看代码。
+
+时间复杂度： $O(n\log n)$。
+
+**代码**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int n, k;
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cin >> n >> k;
+    vector<pair<int, int>> v;
+    vector<int> vis(k + 1, 0);
+    for (int i = 1; i <= k; i++) {
+        int num;
+        cin >> num;
+        for (int j = 1; j <= num; j++) {
+            int pos;
+            cin >> pos;
+            v.push_back({ pos, i });
+        }
+    }
+    sort(v.begin(), v.end());
+    queue<int> q;
+    int ans = INT_MAX;
+    bool flag = false;
+    for (int i = 0; i < (int)v.size(); i++) {
+        q.push(i);
+        vis[v[q.back()].second]++;
+        if (!flag && vis[v[q.back()].second] == 1) {
+            bool cur = true;
+            for (int j = 1; j <= k; j++)
+                if (!vis[j]) {
+                    cur = false;
+                    break;
+                }
+            flag = cur;
+        }
+        if (flag)
+            while (q.size() > k && vis[v[q.front()].second] > 1)
+                vis[v[q.front()].second]--, q.pop();
+        if (flag)
+            ans = min(ans, v[q.back()].first - v[q.front()].first);
+    }
+    cout << ans << endl;
+    return 0;
+}
+```
+
+### Luogu P2219 - Blue
+
+**题目链接**：[Luogu P2219](https://www.luogu.com.cn/problem/P2219)
+
+**题目描述**：给出一个 $M \times N$ 的矩形，矩形的每一个位置都有一个值，在一个 $A \times B$ 的大矩形内去除一个 $C \times D$ 的小矩形，两个矩形的边不能重合，求出去除小矩形后原大矩形内剩余元素的最大和。
+
+**题解**
+
+假设大矩形的右下角坐标为 $(x_1, y_1)$，小矩形的右下角坐标为 $(x_2, y_2)$，那么一定满足 $x1 - (a - c) + 1 < x_2 < x_1$ 和 $y_1 - (b - d) + 1 < y_2 < y_1$。我们可以先维护两个二维前缀和 $ab_{i, j}$ 和 $cd_{i, j}$ 分别表示以 $(i, j)$ 为右下角的变长分别为 $A \times B$ 和 $C \times D$ 的和。
+
+如果已知大矩形的右下角坐标 $(i, j)$，那么我们只需要知道以 $(i - (a - c) + 2, j - (b - d) + 2)$ 和 $(i - 1, j - 1)$ 为左上角和右下角的矩形内最小的 cd 值即可得到当前大矩形位置的最大元素和，这里在横纵两个方向分别用单调队列进行处理即可。
+
+**代码**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1005;
+int m, n, a, b, c, d, pre[N][N], ab[N][N], cd[N][N];
+int rowMin[N][N], colMin[N][N];
+int dq[N], front = 1, back = 0;
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cin >> m >> n >> a >> b >> c >> d;
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> pre[i][j];
+            pre[i][j] = pre[i][j] + pre[i - 1][j] + pre[i][j - 1] - pre[i - 1][j - 1];
+            if (i >= a && j >= b)
+                ab[i][j] = pre[i][j] - pre[i - a][j] - pre[i][j - b] + pre[i - a][j - b];
+            if (i > c && i < m && j > d && j < n)
+                cd[i][j] = pre[i][j] - pre[i - c][j] - pre[i][j - d] + pre[i - c][j - d];
+        }
+    }
+    for (int i = c + 1; i < m; i++) {
+        front = 1, back = 0;
+        for (int j = d + 1; j < n; j++) {
+            while (front <= back && cd[i][dq[back]] > cd[i][j])
+                back--;
+            dq[++back] = j;
+            while (front <= back && j - dq[front] > b - d - 2)
+                front++;
+            if (j >= b - 1)
+                rowMin[i][j + 1] = cd[i][dq[front]];
+        }
+    }
+    for (int j = b; j <= n; j++) {
+        front = 1, back = 0;
+        for (int i = c + 1; i < m; i++) {
+            while (front <= back && rowMin[dq[back]][j] > rowMin[i][j])
+                back--;
+            dq[++back] = i;
+            while (front <= back && i - dq[front] > a - c - 2)
+                front++;
+            if (i >= a - 1)
+                colMin[i + 1][j] = rowMin[dq[front]][j];
+        }
+    }
+    int ans = 0;
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (i >= a && j >= b) {
+                ans = max(ans, ab[i][j] - colMin[i][j]);
+            }
+        }
+    }
+    cout << ans << endl
+    return 0;
+}
+```
