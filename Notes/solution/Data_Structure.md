@@ -233,6 +233,73 @@ int main() {
 }
 ```
 
+## Luogu P9588 - Green
+
+**题目链接**：[Luogu P9588](https://www.luogu.com.cn/problem/P9588)
+
+**题目描述**
+
+第一行输入 $c$, $q$ 两个整数，分别表示测试点编号和操作次数。
+
+- `1 x`：在队尾插入 $1$, $2$, $\cdots$, $x$。
+- `2 y`：弹出对头的 $y$ 个元素。
+- `3 z`：查询队列中的第 $z$ 个元素。
+- `4`：查询队列中所有元素的最大值。
+
+**题解**
+
+观察到题目的数据量，所有插入、删除、查询操作肯定没法直接模拟。
+
+- 操作一：由于操作一插入的数据范围是 $[1, x]$，所以只需要记录下 $x$ 即可，也就是向队尾插入一个 $x$。
+- 操作二：由于操作一的插入只记录了最后一个元素 $x$，所以没法直接在队列中实现删除操作，但可以用一个变量 $del$ 记录下队头被删除的元素数量。
+- 操作三：由于删除操作方式，这里要找的实际上是从头开始的第 $del + x$ 位置。对于队列记录一个前缀和 $pre$，这个前缀和表示队列实际的元素数量，在利用二分在 $pre$ 数组上找到要查询的元素位于哪一个位置的 $[1, x]$ 上。
+- 操作四：用一个 `multiset` 记录所有 $x$，在操作二的操作中，从 `multiset` 中移除被删除的 $x$。
+
+时间复杂度： $O(n\log n)$。
+
+**代码**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+const int N = 2e5 + 5;
+int q, c, del = 0, cur = 1, val[N], pre[N], cnt = 0;
+
+signed main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cin >> c >> q;
+    multiset<int> s;
+    while (q--) {
+        int op, x;
+        cin >> op;
+        if (op == 1) {
+            cin >> x;
+            cnt++;
+            val[cnt] = x, pre[cnt] = pre[cnt - 1] + x;
+            s.insert(x);
+        }
+        if (op == 2) {
+            cin >> x;
+            del += x;
+            while (cur <= cnt && pre[cur] <= del)
+                s.erase(s.find(val[cur++]));
+        }
+        if (op == 3) {
+            cin >> x;
+            int pos = lower_bound(pre + 1, pre + cnt + 1, x + del) - pre;
+            cout << x + del - pre[pos - 1] << '\n';
+        }
+        if (op == 4) {
+            cout << *s.rbegin() << '\n';
+        }
+    }
+    return 0;
+}
+```
+
 ### Luogu P2219 - Blue
 
 **题目链接**：[Luogu P2219](https://www.luogu.com.cn/problem/P2219)
@@ -244,6 +311,8 @@ int main() {
 假设大矩形的右下角坐标为 $(x_1, y_1)$，小矩形的右下角坐标为 $(x_2, y_2)$，那么一定满足 $x1 - (a - c) + 1 < x_2 < x_1$ 和 $y_1 - (b - d) + 1 < y_2 < y_1$。我们可以先维护两个二维前缀和 $ab_{i, j}$ 和 $cd_{i, j}$ 分别表示以 $(i, j)$ 为右下角的变长分别为 $A \times B$ 和 $C \times D$ 的和。
 
 如果已知大矩形的右下角坐标 $(i, j)$，那么我们只需要知道以 $(i - (a - c) + 2, j - (b - d) + 2)$ 和 $(i - 1, j - 1)$ 为左上角和右下角的矩形内最小的 cd 值即可得到当前大矩形位置的最大元素和，这里在横纵两个方向分别用单调队列进行处理即可。
+
+时间复杂度： $O(MN)$。
 
 **代码**
 
