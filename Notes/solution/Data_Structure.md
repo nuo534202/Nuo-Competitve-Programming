@@ -233,7 +233,7 @@ int main() {
 }
 ```
 
-## Luogu P9588 - Green
+### Luogu P9588 - Green
 
 **题目链接**：[Luogu P9588](https://www.luogu.com.cn/problem/P9588)
 
@@ -371,6 +371,51 @@ int main() {
         }
     }
     cout << ans << endl
+    return 0;
+}
+```
+
+## Disjoint Sets
+
+### Luogu P8654 - Yellow
+
+**题目链接**：[Luogo P8654](https://www.luogu.com.cn/problem/P8654)
+
+**题目描述**：一个种植园被分成 $m \times n$ 个小格子，每个格子里种了一株合根植物。这种植物的根可能会沿着南北或东西方向伸展，从而与另一个格子的植物合成为一体。给出哪些小格子间出现了连根现象，找出这个园中一共有多少株合根植物。
+
+**题解**：用并查集将连根的植物合并在一起，最后并查集的集合数量就是答案。
+
+时间复杂度： $O(\max(k, m \times n))$。
+
+**代码**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e6 + 5;
+int n, m, k, f[N], vis[N], ans = 0;
+
+int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cin >> n >> m >> k;
+    for (int i = 1; i <= n * m; i++)
+        f[i] = i;
+    while (k--) {
+        int a, b;
+        cin >> a >> b;
+        f[find(a)] = find(b);
+    }
+    for (int i = 1; i <= n * m; i++) {
+        int x = find(i);
+        if (!vis[x]) {
+            vis[x] = 1;
+            ans++;
+        }
+    }
+    cout << ans << endl;
     return 0;
 }
 ```

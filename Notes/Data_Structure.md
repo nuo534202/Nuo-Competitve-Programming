@@ -18,3 +18,9 @@ All the solutions of the practice problems in this markdown file is in [Data Str
 - [Luogu P2564](https://www.luogu.com.cn/problem/P2564) - Green
 - [Luogu P9588](https://www.luogu.com.cn/problem/P9588) - Green
 - [Luogu P2219](https://www.luogu.com.cn/problem/P2219) - Blue
+
+## Disjoint Sets
+
+### Practice Problems
+
+- [Luogu 8654](https://www.luogu.com.cn/problem/P8654) - Yellow
